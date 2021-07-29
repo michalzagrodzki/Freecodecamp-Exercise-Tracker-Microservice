@@ -8,9 +8,9 @@ const bodyParser = require("body-parser");
 // Basic Configuration
 const { DEFAULT_PORT } = require("./utils/constants");
 
-const user_controller = require("./controllers/user");
-const exercise_controller = require("./controllers/exercise");
-const log_controller = require("./controllers/log");
+const user_controller = require("./domains/user/user.controller");
+const exercise_controller = require("./domains/exercise/exercise.controller");
+const log_controller = require("./domains/log/log.controller");
 
 app.use(cors());
 
