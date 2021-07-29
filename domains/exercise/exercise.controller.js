@@ -1,9 +1,6 @@
-const { validatePostRequest } = require("./exercise.methods");
-
 // post exercise
 exports.post = async (req, res) => {
   try {
-    await validatePostRequest(req);
     const { _id } = req.params;
     const { description, duration, date } = req.body;
 

@@ -13,6 +13,7 @@ const exercise_controller = require("./domains/exercise/exercise.controller");
 const log_controller = require("./domains/log/log.controller");
 
 const { validate_user } = require("./domains/user/user.middleware");
+const { validate_exercise } = require("./domains/exercise/exercise.middleware");
 
 app.use(cors());
 
@@ -30,7 +31,11 @@ app.get("/api/users", user_controller.list);
 app.post("/api/users", validate_user.post, user_controller.post);
 
 // exercises endpoints
-app.post("/api/users/:_id/exercises", exercise_controller.post);
+app.post(
+  "/api/users/:_id/exercises",
+  validate_exercise.post,
+  exercise_controller.post
+);
 
 // logs endpoints
 app.get("/api/users/:_id/logs", log_controller.get);
