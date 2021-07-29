@@ -14,6 +14,7 @@ const log_controller = require("./domains/log/log.controller");
 
 const { validate_user } = require("./domains/user/user.middleware");
 const { validate_exercise } = require("./domains/exercise/exercise.middleware");
+const { validate_log } = require("./domains/log/log.middleware");
 
 app.use(cors());
 
@@ -38,7 +39,7 @@ app.post(
 );
 
 // logs endpoints
-app.get("/api/users/:_id/logs", log_controller.get);
+app.get("/api/users/:_id/logs", validate_log.get, log_controller.get);
 
 const listener = app.listen(DEFAULT_PORT || process.env.PORT, function () {
   console.log(`Listening on port ${listener.address().port}`);
