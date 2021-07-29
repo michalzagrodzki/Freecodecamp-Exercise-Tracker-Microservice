@@ -6,10 +6,10 @@ const is = {
     return payload;
   },
   missingParams: (payload) => {
-    return payload;
+    if (!payload.params) return true;
   },
   emptyParams: (payload) => {
-    return payload;
+    if (!payload.params._id && payload.params._id === "") return true;
   },
 };
 
