@@ -8,10 +8,12 @@ const bodyParser = require("body-parser");
 // Basic Configuration
 const { DEFAULT_PORT } = require("./utils/constants");
 
+// Controllers
 const user_controller = require("./domains/user/user.controller");
 const exercise_controller = require("./domains/exercise/exercise.controller");
 const log_controller = require("./domains/log/log.controller");
 
+// Validators
 const { validate_user } = require("./domains/user/user.middleware");
 const { validate_exercise } = require("./domains/exercise/exercise.middleware");
 const { validate_log } = require("./domains/log/log.middleware");
