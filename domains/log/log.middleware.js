@@ -22,7 +22,7 @@ const validate_log = {
 
       next();
     } catch (error) {
-      res.json({ error: error });
+      res.status(400).json({ error: error });
     }
   },
 };

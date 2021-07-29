@@ -34,7 +34,7 @@ const validate_exercise = {
 
       next();
     } catch (error) {
-      res.json({ error: error });
+      res.status(400).json({ error: error });
     }
   },
 };
