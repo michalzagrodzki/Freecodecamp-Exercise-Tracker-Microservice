@@ -12,6 +12,8 @@ const user_controller = require("./domains/user/user.controller");
 const exercise_controller = require("./domains/exercise/exercise.controller");
 const log_controller = require("./domains/log/log.controller");
 
+const { validate_user } = require("./domains/user/user.middleware");
+
 app.use(cors());
 
 app.use("/public", express.static(`${process.cwd()}/public`));
@@ -25,7 +27,7 @@ app.get("/", (req, res) => {
 
 // user endpoints
 app.get("/api/users", user_controller.list);
-app.post("/api/users", user_controller.post);
+app.post("/api/users", validate_user.post, user_controller.post);
 
 // exercises endpoints
 app.post("/api/users/:_id/exercises", exercise_controller.post);

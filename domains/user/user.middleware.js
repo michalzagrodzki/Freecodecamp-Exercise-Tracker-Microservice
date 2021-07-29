@@ -18,10 +18,18 @@ const validate = {
   },
 };
 
-function validatePostRequest(payload) {
-  if (is.missingBody(payload)) throw "Missing username";
-  if (is.emptyBody(payload)) throw "Username is empty";
-  validate.username(payload.body.username);
-}
+const validate_user = {
+  post: function (req, res, next) {
+    try {
+      if (is.missingBody(req)) throw "Missing username";
+      if (is.emptyBody(req)) throw "Username is empty";
+      validate.username(req.body.username);
 
-exports.validatePostRequest = validatePostRequest;
+      next();
+    } catch (error) {
+      res.json({ error: error });
+    }
+  },
+};
+
+exports.validate_user = validate_user;

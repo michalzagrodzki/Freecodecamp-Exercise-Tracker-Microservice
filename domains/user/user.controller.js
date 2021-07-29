@@ -1,10 +1,6 @@
-const { validatePostRequest } = require("./user.methods");
-
 // list users
 exports.list = async (req, res) => {
   try {
-    validateGetRequest(req);
-
     const response = await fetchUsers();
     res.json(response);
   } catch (error) {
@@ -15,7 +11,6 @@ exports.list = async (req, res) => {
 // post user
 exports.post = async (req, res) => {
   try {
-    validatePostRequest(req);
     const { username } = req.body;
 
     const { username: res_username, _id: res_id } = await postUser(username);
