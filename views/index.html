@@ -16,13 +16,23 @@
         <input id="uname" type="text" name="username" placeholder="username">
         <input type="submit" value="Submit">
       </form>
-      <form id="exercise-form" method="post">
+      <form id="post-exercise-form" method="post">
         <h3>Add exercises</h3>
         <p><code>POST /api/users/:_id/exercises</code></p>
         <input id="uid" type="text" name=":_id" placeholder=":_id">
         <input id="desc" type="text" name="description" placeholder="description*">
         <input id="dur" type="text" name="duration" placeholder="duration* (mins.)">
         <input id="dat" type="text" name="date" placeholder="date (yyyy-mm-dd)">
+        <input type="submit" value="Submit">
+      </form>
+      <form id="get-exercise-form">
+        <h3>GET user's exercise log:</h3>
+        <p><code>GET /api/users/:_id/logs?[&amp;from][&amp;to][&amp;limit]</code></p>
+        <input id="l-uid" type="text" name=":_id" placeholder=":_id*">
+        <input id="f-dat" type="text" name="from-date" placeholder="from date (yyyy-mm-dd)">
+        <input id="t-dat" type="text" name="to-date" placeholder="to date (yyyy-mm-dd)">
+        <input id="lmt" type="text" name="limit" placeholder="limit">
+        
         <input type="submit" value="Submit">
       </form>
       <p>
@@ -33,13 +43,25 @@
       <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
     </div>
     <script>
-      const exerciseForm = document.getElementById("exercise-form");
+      const postExerciseForm = document.getElementById("post-exercise-form");
 
-      exerciseForm.addEventListener("submit", () => {
+      postExerciseForm.addEventListener("submit", () => {
         const userId = document.getElementById("uid").value;
-        exerciseForm.action = `/api/users/${userId}/exercises`;
+        postExerciseForm.action = `/api/users/${userId}/exercises`;
 
-        exerciseForm.submit();
+        postExerciseForm.submit();
+      });
+
+      const getExerciseForm = document.getElementById("get-exercise-form");
+
+      getExerciseForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const userId = document.getElementById("l-uid").value;
+        const fromDate = document.getElementById("f-dat").value;
+        const toDate = document.getElementById("t-dat").value;
+        const limit = document.getElementById("lmt").value;
+        url = `/api/users/${userId}/logs?from=${fromDate}&to=${toDate}&limit=${limit}`;
+        window.location.href = url;
       });
     </script>
   </body>
