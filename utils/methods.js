@@ -4,6 +4,9 @@ noSpecialCharacters = (payload) => {
 };
 
 const is = {
+  undefinedDate: (date) => {
+    return date === undefined;
+  },
   emptyDate: (date) => {
     return date === "";
   },
@@ -34,6 +37,7 @@ const parse = {
     return parseInt(time, 10);
   },
   date: (date) => {
+    if (is.undefinedDate(date)) return set.emptyDate();
     if (is.emptyDate(date)) return set.emptyDate();
     if (is.dashDate(date)) return set.dashDate(date);
     if (is.slashDate(date)) return set.slashDate(date);
