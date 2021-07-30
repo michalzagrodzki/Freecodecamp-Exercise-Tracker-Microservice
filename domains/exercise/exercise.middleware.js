@@ -5,8 +5,8 @@ const is = {
     if (!payload.body) return true;
   },
   emptyBody: (payload) => {
-    const { ":_id": _id, description, duration } = payload.body;
-    if (_id && description && duration) return false;
+    const { description, duration } = payload.body;
+    if (description && duration) return false;
     return true;
   },
   missingParams: (payload) => {
