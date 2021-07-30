@@ -1,3 +1,5 @@
+const { postUser } = require("./user.service");
+
 // list users
 exports.list = async (req, res) => {
   try {
@@ -13,7 +15,9 @@ exports.post = async (req, res) => {
   try {
     const { username } = req.body;
 
-    const { username: res_username, _id: res_id } = await postUser(username);
+    const { username: res_username, _id: res_id } = await postUser({
+      username,
+    });
     const response = {
       username: res_username,
       _id: res_id,
