@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const morgan = require("morgan");
 
 const bodyParser = require("body-parser");
 
@@ -19,6 +20,9 @@ const { validate_exercise } = require("./domains/exercise/exercise.middleware");
 const { validate_log } = require("./domains/log/log.middleware");
 
 app.use(cors());
+app.use(
+  morgan(":method :url :status :res[content-length] - :response-time ms")
+);
 
 app.use("/public", express.static(`${process.cwd()}/public`));
 app.use(bodyParser.urlencoded({ extended: false }));
