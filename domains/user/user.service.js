@@ -7,6 +7,14 @@ const userSchema = new Schema({
 
 let UserModel = mongoose.model("user", userSchema);
 
+async function fetchUsers() {
+  const query = UserModel.find(function (err) {
+    if (err) return err;
+  });
+  const response = await query;
+  return response;
+}
+
 async function postUser(payload) {
   const { username } = payload;
   const userRecord = new UserModel({
@@ -20,3 +28,4 @@ async function postUser(payload) {
 }
 
 exports.postUser = postUser;
+exports.fetchUsers = fetchUsers;

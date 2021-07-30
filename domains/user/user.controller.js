@@ -1,4 +1,4 @@
-const { postUser } = require("./user.service");
+const { fetchUsers, postUser } = require("./user.service");
 
 // list users
 exports.list = async (req, res) => {
