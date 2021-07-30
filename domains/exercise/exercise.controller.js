@@ -21,10 +21,9 @@ exports.post = async (req, res) => {
       duration,
       date,
     });
-    const { _id: res_user_id, username: res_username } = await getUser(_id);
+    const user_response = await getUser(_id);
     const response = {
-      _id: res_user_id,
-      username: res_username,
+      ...user_response._doc,
       description: res_description,
       duration: res_duration,
       date: res_date,
