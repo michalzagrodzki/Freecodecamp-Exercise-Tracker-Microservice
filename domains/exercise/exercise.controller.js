@@ -1,9 +1,16 @@
+const { getUser } = require("./../user/user.service");
+const { postExercise } = require("./exercise.service");
+const { parseExerciseRequest } = require("./../../utils/methods");
+
 // post exercise
 exports.post = async (req, res) => {
   try {
     const { _id } = req.params;
-    const { description, duration, date } = req.body;
-
+    const {
+      description,
+      parsed_duration: duration,
+      parsed_date: date,
+    } = parseExerciseRequest(req.body);
     const {
       description: res_description,
       duration: res_duration,
