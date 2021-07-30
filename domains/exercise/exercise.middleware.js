@@ -1,3 +1,5 @@
+const { noSpecialCharacters } = require("./../../utils/methods");
+
 const is = {
   missingBody: (payload) => {
     if (!payload.body) return true;
@@ -21,6 +23,14 @@ const validate = {
     return payload;
   },
   request: (payload) => {
+    const { ":_id": _id, description, duration } = payload;
+    const durationInt = parseInt(duration, 10);
+    if (!noSpecialCharacters(_id)) throw "Invalid Id";
+    if (description === "") throw "Empty description";
+    if (!noSpecialCharacters(description))
+      throw "No special characters allowed in description";
+    if (durationInt < 0) throw "Duration cannot be minus value";
+    if (isNaN(durationInt)) throw "Duration must be a number ";
     return payload;
   },
 };
