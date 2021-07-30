@@ -5,7 +5,7 @@ const userSchema = new Schema({
   username: { type: String, required: true },
 });
 
-let UserModel = mongoose.model("user", userSchema);
+let UserModel = mongoose.model("User", userSchema);
 
 async function fetchUsers() {
   const query = UserModel.find(function (err) {
