@@ -15,11 +15,11 @@ exports.post = async (req, res) => {
   try {
     const { username } = req.body;
 
-    const { username: res_username, _id: res_id } = await postUser({
+    const { _id: res_id } = await postUser({
       username,
     });
     const response = {
-      username: res_username,
+      username: username,
       _id: res_id,
     };
     res.json(response);
