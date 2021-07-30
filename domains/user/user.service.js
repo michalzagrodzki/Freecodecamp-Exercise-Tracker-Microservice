@@ -27,5 +27,12 @@ async function postUser(payload) {
   return response;
 }
 
+async function getUser(_id) {
+  const query = UserModel.findById(_id);
+  const response = await query;
+  return response;
+}
+
 exports.postUser = postUser;
 exports.fetchUsers = fetchUsers;
+exports.getUser = getUser;
