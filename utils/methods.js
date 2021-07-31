@@ -3,6 +3,11 @@ noSelectedSpecialCharacters = (payload) => {
   return regex.test(payload);
 };
 
+noSpecialCharacters = (payload) => {
+  regex = new RegExp(/^[a-zA-Z0-9]+$/g);
+  return regex.test(payload);
+};
+
 const is = {
   undefinedDate: (date) => {
     return date === undefined;
@@ -57,4 +62,5 @@ parseExerciseRequest = (payload) => {
 };
 
 exports.noSelectedSpecialCharacters = noSelectedSpecialCharacters;
+exports.noSpecialCharacters = noSpecialCharacters;
 exports.parseExerciseRequest = parseExerciseRequest;

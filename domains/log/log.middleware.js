@@ -1,3 +1,5 @@
+const { noSpecialCharacters } = require("./../../utils/methods");
+
 const is = {
   missingParams: (payload) => {
     if (!payload.params) return true;
@@ -10,7 +12,9 @@ const is = {
 
 const validate = {
   id: (payload) => {
-    return payload;
+    if (!noSpecialCharacters(payload)) {
+      throw "No special characters allowed in id";
+    }
   },
 };
 
