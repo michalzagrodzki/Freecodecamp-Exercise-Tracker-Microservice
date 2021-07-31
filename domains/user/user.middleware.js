@@ -9,11 +9,11 @@ const is = {
 
 const validate = {
   username: (payload) => {
-    noSpecialCharacters = (payload) => {
+    noSelectedSpecialCharacters = (payload) => {
       regex = new RegExp(/^[a-zA-Z0-9!@,._\s-]+$/g);
       return regex.test(payload);
     };
-    if (noSpecialCharacters(payload)) return;
+    if (noSelectedSpecialCharacters(payload)) return;
     throw "No special characters are allowed in username";
   },
 };

@@ -1,4 +1,4 @@
-noSpecialCharacters = (payload) => {
+noSelectedSpecialCharacters = (payload) => {
   regex = new RegExp(/^[a-zA-Z0-9!@,._\s-]+$/g);
   return regex.test(payload);
 };
@@ -56,5 +56,5 @@ parseExerciseRequest = (payload) => {
   return parsedPayload;
 };
 
-exports.noSpecialCharacters = noSpecialCharacters;
+exports.noSelectedSpecialCharacters = noSelectedSpecialCharacters;
 exports.parseExerciseRequest = parseExerciseRequest;
