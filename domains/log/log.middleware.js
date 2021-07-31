@@ -1,9 +1,10 @@
 const is = {
   missingParams: (payload) => {
-    return payload;
+    if (!payload.params) return true;
   },
   emptyParams: (payload) => {
-    return payload;
+    const { ":_id": _id } = payload.params;
+    if (!_id && _id === "") return true;
   },
 };
 
