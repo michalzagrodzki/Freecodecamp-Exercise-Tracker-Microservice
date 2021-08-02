@@ -30,4 +30,14 @@ async function postExercise(payload) {
   return response;
 }
 
+// get exercises
+async function fetchExercises(_id) {
+  const query = ExerciseModel.find({ user: _id }, function (err) {
+    if (err) return err;
+  });
+  const response = await query;
+  return response;
+}
+
 exports.postExercise = postExercise;
+exports.fetchExercises = fetchExercises;
