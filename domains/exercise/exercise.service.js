@@ -31,12 +31,19 @@ async function postExercise(payload) {
 }
 
 // get exercises
-async function fetchExercises(_id) {
-  const query = ExerciseModel.find({ user: _id }, function (err) {
+async function fetchExercises(_id, from, to, limit) {
+  const setFromDate = { $gte: from };
+  const setToDate = { $lte: to };
+  const request = {
+    user: _id,
+  };
+  if (from) request.date = { ...setFromDate };
+  if (to) request.date = { ...request.date, ...setToDate };
+  const query = ExerciseModel.find(request).limit(limit);
+  await query.exec(function (err) {
     if (err) return err;
   });
-  const response = await query;
-  return response;
+  return query;
 }
 
 exports.postExercise = postExercise;

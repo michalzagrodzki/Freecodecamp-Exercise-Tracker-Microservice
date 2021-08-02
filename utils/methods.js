@@ -36,6 +36,10 @@ const set = {
     const day = parseInt(dateArray[2], 10) + 1;
     return new Date(year, month, day);
   },
+  undefinedDate: (date) => {
+    if (new Date(date).toString() === "Invalid Date") return undefined;
+    return set.dashDate(date);
+  },
 };
 const parse = {
   duration: (time) => {
@@ -64,3 +68,4 @@ parseExerciseRequest = (payload) => {
 exports.noSelectedSpecialCharacters = noSelectedSpecialCharacters;
 exports.noSpecialCharacters = noSpecialCharacters;
 exports.parseExerciseRequest = parseExerciseRequest;
+exports.set = set;
