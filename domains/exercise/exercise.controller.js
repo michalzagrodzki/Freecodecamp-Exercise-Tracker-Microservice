@@ -23,6 +23,7 @@ exports.post = async (req, res) => {
     });
     const format_res_date = formatDate(res_date);
     const user_response = await getUser(_id);
+    delete user_response._doc.__v;
     const response = {
       ...user_response._doc,
       description: res_description,
