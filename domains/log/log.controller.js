@@ -16,6 +16,7 @@ exports.get = async (req, res) => {
     const response = {
       responseUser,
       log: responseLogs,
+      count: responseLogs.length,
     };
     res.json(response);
   } catch (error) {
