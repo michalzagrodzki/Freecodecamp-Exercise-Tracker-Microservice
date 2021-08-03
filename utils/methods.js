@@ -8,6 +8,10 @@ noSpecialCharacters = (payload) => {
   return regex.test(payload);
 };
 
+formatDate = (date) => {
+  return date.toDateString();
+};
+
 const is = {
   undefinedDate: (date) => {
     return date === undefined;
@@ -67,5 +71,6 @@ parseExerciseRequest = (payload) => {
 
 exports.noSelectedSpecialCharacters = noSelectedSpecialCharacters;
 exports.noSpecialCharacters = noSpecialCharacters;
+exports.formatDate = formatDate;
 exports.parseExerciseRequest = parseExerciseRequest;
 exports.set = set;

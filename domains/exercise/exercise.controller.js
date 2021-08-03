@@ -1,6 +1,6 @@
 const { getUser } = require("./../user/user.service");
 const { postExercise } = require("./exercise.service");
-const { parseExerciseRequest } = require("./../../utils/methods");
+const { parseExerciseRequest, formatDate } = require("./../../utils/methods");
 
 // post exercise
 exports.post = async (req, res) => {
@@ -21,12 +21,13 @@ exports.post = async (req, res) => {
       duration,
       date,
     });
+    const format_res_date = formatDate(res_date);
     const user_response = await getUser(_id);
     const response = {
       ...user_response._doc,
       description: res_description,
       duration: res_duration,
-      date: res_date,
+      date: format_res_date,
     };
     res.json(response);
   } catch (error) {
